@@ -10,5 +10,7 @@ int main()
 
     printf("\nYou entered %d.\n\nGoodbye.\n", inputnum);
 
+    printf("\n\n\n\nBut first, let me take a selfie!\n")
+
     return 0;
 }
