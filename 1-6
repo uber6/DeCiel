@@ -1,0 +1,51 @@
+#include <stdio.h>
+
+int main() {
+    int i=11, j=22, k=33, l=44;
+    int *eax, *ebx, *ecx, *edx;
+    
+    eax = &i;
+    ebx = &j;
+    ecx = &k;
+    edx = &l;
+
+    printf("\nInitialize...\n\n\nThe address of 'i':\t%p\nThe address of 'eax':\t%p\n\n", &i, eax);
+
+    eax = &i;
+    printf("eax = &i;\nThe new address of 'eax':\t%p\n\n", eax);
+
+    printf("The value of 'i':\t%d\nThe value of 'eax':\t%d\n\n", i, *eax);
+
+    // 01: c7 00 01 00 00+  mov dword ptr [eax], 1
+    // set the memory at address EAX to 1
+    *eax = 1;
+    printf("01: c7 00 01 00 00+   mov dword ptr [eax], 1\n\
+    \tset the memory at address EAX to 1\n\
+    *eax = 1\n\
+    The address / value of 'eax':\t%p / %d\n\
+    The address / value of 'i':\t\t%p / %d\n\n", eax, *eax, &i, i);
+
+    // 02: 8b 08            mov ecx, [eax]
+    // set ECX to the value at address EAX
+    ecx = *eax;
+    printf("02: 8b 08            mov ecx, [eax]\n\
+    \tset ECX to the value at address EAX\n\
+        ecx = *eax\n\
+    The address / value of 'eax':\t%p / %d\n\
+    The address / value of 'ecx':\t%p / NA\n\
+    The address / value of 'i':\t\t%p / %d\n\n", eax, *eax, ecx, &i, i);
+
+    // 03: 89 18             mov [eax], ebx
+    // set the memrooy at address EAX to EBX
+    *eax = ebx;
+    printf("03: 89 18             mov [eax], ebx\n\
+    \tset the memory at address EAX to EBX\n\
+        *eax = ebx\n\
+    The address / value of 'eax':\t%p / %p\n\
+    The address / value of 'ebx':\t%p / %d\n\
+    The address / value of 'ecx':\t%p / NA\n\
+    The address / value of 'i':\t\t%p / %p\n\n", eax, *eax, ebx, *ebx, ecx, &i, i);
+                                                                                                                                                                             
+    printf("\nFinished...\n");
+    return(0);
+}
